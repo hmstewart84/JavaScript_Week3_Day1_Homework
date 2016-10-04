@@ -4,33 +4,33 @@ var FilmApi = function(app) {
 
   var films = new Films;
 
-  app.get('/films', function(req, res) {
+  app.get('/api/films', function(req, res) {
     res.json({ data: films });
   });
 
 
-
-  app.post('/films', function(req, res) {
+  //app comes from express (an object that express returns to us)
+  app.post('/api/films', function(req, res) {
     films.push(req.body.film); //now has a body object cos we installed body parser.
     res.json({ data: films });
   });
 
 
 
-  app.get('/films/:id', function(req, res) {
+  app.get('/api/films/:id', function(req, res) {
     var foundFilm = req.params.id;  //req and params are objects which has a property of id
-    res.json({ data: films[foundFilm] }); 
-  });
+    res.json({ data: films[foundFilm] }); //params is stuff that we put in the url
+  });                                     //not using params to get new stuff
 
 
-  app.delete('/films/:id', function(req, res) {
+  app.delete('/api/films/:id', function(req, res) {
     films.splice(req.params.id, 2);
     res.json({ data: films });
   });
 
 
-  app.put('/films/:id', function(req, res) {  //update
-    films[req.params.id] = req.body.film;
+  app.put('/api/films/:id', function(req, res) {  //update
+    films[req.params.id] = req.body.film;  //body object is a delivery of new stuff unlike params.
     res.json({ data: films });
   });
 

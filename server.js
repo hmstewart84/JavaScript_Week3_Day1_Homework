@@ -5,14 +5,14 @@ var films = require('./client/src/models/films')();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-var FilmApi = require('./api/filmApi');
+var FilmApi = require('./api/filmApi');  //newing it up
 
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
-app.use(express.static('client/build'));
+app.use(express.static('client/build'));  //running the app
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
